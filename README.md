@@ -1,4 +1,4 @@
-大创和同学搞的项目，原项目有PC端和移动端，后台用Flask，我负责移动端，采用Vue.js开发
+大创和同学搞的项目，原项目有PC端和移动端，后台用Flask，我负责移动端，采用Vue.js开发，这里只展示我负责的部分
 # supermall
 
 ## Project setup
