@@ -1,6 +1,7 @@
 <template>
 	<div class="good-list">
-		<goods-list-item v-for="item in goods" :key='item.iid' :goodsItem='item' class="good-list-item">
+    <!--iid又会报重复的错误-->
+		<goods-list-item v-for="(item,index) in goods" :key='index' :goodsItem='item' class="good-list-item">
 		</goods-list-item>
 	</div>
 </template>

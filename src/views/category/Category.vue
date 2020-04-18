@@ -1,6 +1,7 @@
 <template>
   <div class="wrapper" ref="a">
     <ul>
+      <button @click="btnClick">按钮</button>
       <li>1</li>
       <li>2</li>
       <li>3</li>
@@ -115,10 +116,27 @@
       }
     },
     mounted() {
-      // this.scroll = new BScroll(document.querySelector('.wrapper'),{
-      this.scroll = new BScroll(this.$refs.a,{
-
+      this.scroll = new BScroll(document.querySelector('.wrapper'),{
+      // this.scroll = new BScroll(this.$refs.a,{
+        probeType:3,
+        pullUpLoad:true,
+        //好像默认是true
+        // click:true
       })
+      this.scroll.on('scroll',(position)=>{
+        console.log(position)
+      })
+      this.scroll.on('pullingUp',()=>{
+        console.log('上拉加载')
+        setTimeout(()=>{
+          this.scroll.finishPullUp()
+        },2000)
+      })
+    },
+    methods:{
+      btnClick(){
+        console.log('---------')
+      }
     }
   }
 </script>
