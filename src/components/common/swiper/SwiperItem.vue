@@ -6,14 +6,13 @@
 
 <script>
 	export default {
-		name: "SliderItem"
+		name: "Slide"
 	}
 </script>
 
 <style scoped>
   .slide {
     width: 100%;
-    /* 不收缩 */
     flex-shrink: 0;
   }
 

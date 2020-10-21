@@ -1,21 +1,25 @@
 <template>
   <div id="app">
+    <!--用到组件的name属性-->
+    <keep-alive exclude="Detail">
       <router-view></router-view>
-      <main-tab-bar></main-tab-bar>
+    </keep-alive>
+    <main-tab-bar></main-tab-bar>
   </div>
 </template>
 
 <script>
-import MainTabBar from 'components/content/MainTabBar'
-export default {
-  name: 'App',
-  components: {
+  import MainTabBar from 'components/content/MainTabBar'
+
+  export default {
+    name: 'App',
+    components: {
       MainTabBar
+    }
   }
-}
 </script>
 
 <style>
-@import 'assets/css/base.css';
-@import 'assets/css/normalize.css';
+  @import 'assets/css/base.css';
+  @import 'assets/css/normalize.css';
 </style>

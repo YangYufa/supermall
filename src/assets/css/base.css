@@ -32,13 +32,10 @@ a {
 }
 
 
-.clear-fix::after {
+.clear-fix::before,.clear-fix::after {
   clear: both;
   content: '';
-  display: block;
-  width: 0;
-  height: 0;
-  visibility: hidden;
+  display: table;
 }
 
 .clear-fix {
@@ -63,4 +60,5 @@ a {
 .right {
   float: right;
 }
+
 

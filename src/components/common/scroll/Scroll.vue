@@ -32,17 +32,32 @@
         click: true,
         pullUpLoad: this.pullUpLoad
       })
-      this.scroll.on('scroll', (position) => {
-        this.$emit('scroll',position)
-      })
-      this.scroll.on('pullingUp',()=>{
-        this.$emit('pullingUp')
-      })
+      if(this.probeType===2||this.probeType===3){
+        this.scroll.on('scroll', (position) => {
+          this.$emit('scroll',position)
+        })
+      }
+      if(this.pullUpLoad){
+        this.scroll.on('pullingUp',()=>{
+          this.$emit('pullingUp')
+        })
+      }
     },
     methods: {
       //其实这个也没必要，太多封装真的烦
       scrollTo(x, y, time = 600) {
-        this.scroll.scrollTo(x, y, time)
+        // 不这样做有时候会爆出scroll或者scrollTo是undefined
+        this.scroll&&this.scroll.scrollTo&&this.scroll.scrollTo(x, y, time)
+      },
+      finishPullUp(){
+        //保证对象不是空的
+        this.scroll&&this.scroll.finishPullUp&&this.scroll.finishPullUp()
+      },
+      refresh(){
+        this.scroll&&this.scroll.refresh&&this.scroll.refresh()
+      },
+      getScrollY(){
+        return this.scroll?this.scroll.y:0
       }
     }
   }

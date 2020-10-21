@@ -1,6 +1,7 @@
 <template>
-	<div class="good-list-item">
-    <img :src="goodsItem.show.img" alt="">
+	<div class="good-list-item" @click="itemClick">
+<!--    <img :src="showImage" alt="" @load="imageLoad">-->
+    <img v-lazy="showImage" alt="" @load="imageLoad">
     <div class="good-info">
       <p>{{goodsItem.title}}</p>
       <span class="price">{{goodsItem.price}}</span><span class="star"></span><span class="collect">{{goodsItem.cfav}}</span>
@@ -16,16 +17,29 @@
 				type:Object,
 				default:{}
 			}
-		}
+		},
+    computed:{
+		  showImage(){
+		    return this.goodsItem.image||this.goodsItem.show.img
+      }
+    },
+    methods:{
+		  imageLoad(){
+		    this.$bus.$emit('itemImgLoad')
+      },
+      itemClick(){
+		    this.$router.push('/detail/'+this.goodsItem.iid)
+      }
+    }
 	}
 </script>
 
-<style>
+<style scoped>
   .good-list-item{
     text-align: center;
     /*哎，其实哦都是为了有些图片不够长啊*/
     position: relative;
-    /*留padding给ab的用*/
+    /*留padding给ab的用的，放图片描述用的*/
     padding-bottom: 40px;
     font-size: 12px;
   }
@@ -35,6 +49,7 @@
   .good-info{
     position: absolute;
     /*有了w就不用right来弄了，没有w，布局会很奇怪，用r才能解决，但是有了w就又不用r了*/
+    /*也就是说用绝对定为最好加上宽度*/
     width: 100%;
     left: 0;
     /*right: 0;*/
